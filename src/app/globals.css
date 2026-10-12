@@ -42,6 +42,8 @@ a { color: inherit; }
 .experience-item h3 a { text-decoration-color: #65665f; text-underline-offset: 3px; }
 .external { margin-left: 4px; color: #96968f; font-size: 10px; text-decoration: none; }
 .body-copy { margin: 0; color: #b0b0a9; font-size: 12px; line-height: 1.85; }
+.bio-link { color: inherit; text-decoration-color: #85867f; text-underline-offset: 3px; transition: color .2s ease; }
+.bio-link:hover { color: var(--accent); }
 .experience-item .body-copy { max-width: 570px; }
 .experience-points { display: grid; gap: 7px; margin: 0; padding-left: 16px; list-style: disc; }
 .experience-points li { padding-left: 3px; }

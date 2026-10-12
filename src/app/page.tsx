@@ -1,8 +1,9 @@
-const projects: { name: string; type: string; description: string; repo: string; image?: string; images?: string[]; alt?: string; mark?: string }[] = [
+const projects: { name: string; type: string; description: string; repo: string; live?: string; image?: string; images?: string[]; alt?: string; mark?: string }[] = [
   {
     name: "DailyFlow",
     type: "Productivity · Personal project",
     repo: "https://github.com/manojr-12/dailyflow",
+    live: "https://daily-tracker-eight-dusky.vercel.app/",
     description:
       "A calm place to manage daily and recurring tasks, build habits, and keep a private journal. Includes streaks, overdue-task carryover, progress views, and JSON backup and restore.",
     image: "/portfolio/dailyflow.png",
@@ -136,6 +137,7 @@ export default function Home() {
                 <p className="project-type">{project.type}</p>
                 <h3><a className="project-title-link" href={project.repo} target="_blank" rel="noreferrer">{project.name}<span aria-hidden="true">↗</span></a></h3>
                 <p className="body-copy">{project.description}</p>
+                {project.live && <a className="text-link" href={project.live} target="_blank" rel="noreferrer">Live site <span aria-hidden="true">↗</span></a>}
               </div>
             </article>
           ))}
@@ -145,9 +147,8 @@ export default function Home() {
       <section className="about-section" id="about">
         <div className="about-index"><span className="eyebrow">A little about me</span></div>
         <div className="about-content">
-          <h2>Good software should feel effortless.</h2>
-          <p className="body-copy">I enjoy working through the hard parts behind that feeling: reducing unnecessary work, making systems observable, and helping teams ship confidently. My day-to-day tools include JavaScript, C++, Dart, React, Node.js, Redis, and RabbitMQ.</p>
-          <p className="body-copy">I studied Information Technology at SSN College of Engineering. Outside of work, I like building small products, solving programming problems, and learning how things fit together.</p>
+          <h2>Hustle till my last breath</h2>
+          <p className="body-copy">I studied IT at SSN College of Engineering and like figuring out tricky problems with simple solutions. When I’m not working, you’ll probably find me at the gym, planning a trip, swimming, gaming, listening to <a className="bio-link" href="https://open.spotify.com/playlist/60ht3itAzPwYkL88GaEIE4?si=tfha2yOGSE2x4ovXNQc7SA" target="_blank" rel="noreferrer">music</a>, or reading. I’m currently reading <em>The Midnight Library</em>. I run on coffee, love watching F1 and cheering for Max, and try to stay disciplined.</p>
         </div>
       </section>
 
