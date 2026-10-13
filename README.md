@@ -1,6 +1,8 @@
 # Manoj Ravichandran — Portfolio
 
 Personal portfolio built with Next.js and Sanity.
+<img width="1418" height="988" alt="image" src="https://github.com/user-attachments/assets/3450e09b-182f-44c8-81c1-eda977d564e9" />
+
 
 ## Links
 
