@@ -29,6 +29,8 @@ a { color: inherit; }
 .hero-links { display: flex; gap: 25px; margin-top: 26px; }
 .text-link { padding-bottom: 4px; border-bottom: 1px solid var(--ink); font-size: 12px; font-weight: 600; text-decoration: none; }
 .text-link span { padding-left: 4px; font-size: 11px; }
+.accent-text, .hero-links .text-link { color: var(--accent); }
+.hero-links .text-link { border-color: var(--accent); }
 .section { padding: 76px 0 86px; border-top: 1px solid var(--line); }
 .experience-section { border-bottom: 1px solid var(--line); }
 .section-heading { display: grid; grid-template-columns: 190px 1fr; align-items: baseline; margin-bottom: 42px; }

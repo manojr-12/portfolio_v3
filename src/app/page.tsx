@@ -1,86 +1,10 @@
-const projects: { name: string; type: string; description: string; repo: string; live?: string; image?: string; images?: string[]; alt?: string; mark?: string }[] = [
-  {
-    name: "DailyFlow",
-    type: "Productivity · Personal project",
-    repo: "https://github.com/manojr-12/dailyflow",
-    live: "https://daily-tracker-eight-dusky.vercel.app/",
-    description:
-      "A calm place to manage daily and recurring tasks, build habits, and keep a private journal. Includes streaks, overdue-task carryover, progress views, and JSON backup and restore.",
-    image: "/portfolio/dailyflow.png",
-    alt: "DailyFlow productivity app interface",
-  },
-  {
-    name: "CricInfo for macOS",
-    type: "macOS · Personal project",
-    repo: "https://github.com/manojr-12/cric_info",
-    description:
-      "A menu bar companion for live cricket scores, match statistics, and player data, powered by custom APIs and carefully tuned refresh logic.",
-    image: "/portfolio/widget-preview.png",
-    alt: "Live cricket score widget preview",
-  },
-  {
-    name: "BitGuard",
-    type: "Security · Personal project",
-    repo: "https://github.com/manojr-12/BitGuard",
-    mark: "BG",
-    description:
-      "An encrypted credential vault designed around biometric authentication and secure access controls.",
-  },
-  {
-    name: "Xpense",
-    type: "Mobile · Personal project",
-    repo: "https://github.com/manojr-12/XpenseProject",
-    description:
-      "A cross-platform expense tracker built with React Native and Firebase, with real-time data synchronization.",
-    images: ["/portfolio/xpense_2.png", "/portfolio/xpense_1.png"],
-    alt: "Xpense mobile app screens",
-  },
-  {
-    name: "Link prediction in social networks",
-    type: "Machine learning · Academic project",
-    repo: "https://github.com/manojr-12/link_prediction",
-    description:
-      "Explored how machine learning models can predict new connections in evolving social graphs.",
-    image: "/portfolio/link_p.png",
-    alt: "Link prediction project visualization",
-  },
-];
+import { getPortfolioContent } from "../sanity/lib/client";
 
-const experience = [
-  {
-    date: "2023 — Now",
-    role: "Software Development Engineer",
-    company: "Samsung",
-    href: "https://www.samsung.com/",
-    details: [
-      "Built an automated app performance analysis system to capture page, flow, and rendering metrics, detect regressions, generate AI-assisted insights, and create Jira tickets for critical issues; contributed to 50% reduction in screen lag and enabled release-over-release comparisons.",
-      "Optimized critical APIs, reducing response times by 20% and improving application performance.",
-      "Built an in-memory API caching layer for the shop app with request deduplication and concurrent in-flight request coalescing, reducing redundant network calls and improving app responsiveness.",
-      "Led Samsung Shop app rollouts across USA, Japan, Turkey, Canada, Australia, Saudi Arabia, and Israel, coordinating market-specific localization and release readiness with multi language support.",
-    ],
-  },
-  {
-    date: "2023",
-    role: "Software Developer Intern",
-    company: "Gallabox",
-    href: "https://gallabox.com/",
-    details: [
-      "Developed a WhatsApp-based appointment booking and queue management system with backend services in Node.js, Redis and RabbitMQ asynchronous job processing and supporting bursty traffic",
-    ],
-  },
-  {
-    date: "2022",
-    role: "Software Developer Intern",
-    company: "Google",
-    href: "https://about.google/",
-    details: [
-      "Developed a health monitoring solution for private cloud infrastructure, enabling diagnostics and detection of infrastructure failures.",
-      "Built Angular dashboards to visualize the metrics.",
-    ],
-  },
-];
+export const dynamic = "force-dynamic";
 
-export default function Home() {
+export default async function Home() {
+  const content = await getPortfolioContent();
+  const aboutSegments = content.aboutBody.split(/(music|The Midnight Library)/gi);
   return (
     <main className="page-shell">
       <header className="topbar">
@@ -94,23 +18,23 @@ export default function Home() {
       </header>
 
       <section className="hero" id="top">
-        <p className="eyebrow">Chennai, India <span className="eyebrow-divider">/</span> Building at Samsung</p>
+        <p className="eyebrow">{content.heroLocation} <span className="eyebrow-divider">/</span> {content.heroCompany}</p>
         <h1>Manoj<br className="mobile-break" /> Ravichandran</h1>
         <p className="hero-copy">
-          I&apos;m a software development engineer with 3+ years of experience in distributed systems, microservices, mobile application development, and performance optimization. I also make jokes.
+          {content.heroDescription}
         </p>
         <div className="hero-links">
-          <a className="text-link" href="mailto:manojravichandran12@gmail.com">Get in touch <span aria-hidden="true">↗</span></a>
+          <a className="text-link" href={`mailto:${content.contactEmail}`}>Get in touch <span aria-hidden="true">↗</span></a>
         </div>
       </section>
 
       <section className="section experience-section" id="experience">
         <div className="section-heading">
-          <p className="eyebrow">A few chapters</p>
-          <h2>Experience</h2>
+          <p className="eyebrow accent-text">{content.experienceLabel}</p>
+          <h2>{content.experienceTitle}</h2>
         </div>
         <div className="experience-list">
-          {experience.map((item) => (
+          {content.experience.map((item) => (
             <article className="experience-item" key={item.company}>
               <p className="experience-date">{item.date}</p>
               <div>
@@ -126,11 +50,11 @@ export default function Home() {
 
       <section className="section projects-section" id="projects">
         <div className="section-heading project-heading">
-          <div><p className="eyebrow">Things I&apos;ve made</p><h2>Selected projects</h2></div>
-          <p className="heading-note">A mix of useful tools, experiments, and ideas I wanted to bring to life.</p>
+          <div><p className="eyebrow accent-text">{content.projectsLabel}</p><h2>{content.projectsTitle}</h2></div>
+          <p className="heading-note">{content.projectsNote}</p>
         </div>
         <div className="project-grid">
-          {projects.map((project, index) => (
+          {content.projects.map((project) => (
             <article className={`project-card ${project.image ? "has-image" : "text-only"}`} key={project.name}>
               {project.images ? <div className="project-image-wrap project-multi-image" aria-label={`${project.name} app screens`}>{project.images.map((image) => <img src={image} alt="" key={image} />)}</div> : project.image ? <div className="project-image-wrap"><img src={project.image} alt={project.alt ?? ""} /></div> : <div className="project-monogram" aria-hidden="true">{project.mark}</div>}
               <div className="project-copy">
@@ -145,17 +69,25 @@ export default function Home() {
       </section>
 
       <section className="about-section" id="about">
-        <div className="about-index"><span className="eyebrow">A little about me</span></div>
+        <div className="about-index"><span className="eyebrow accent-text">{content.aboutLabel}</span></div>
         <div className="about-content">
-          <h2>Hustle till my last breath</h2>
-          <p className="body-copy">I studied IT at SSN College of Engineering and like figuring out tricky problems with simple solutions. When I’m not working, you’ll probably find me at the gym, planning a trip, swimming, gaming, listening to <a className="bio-link" href="https://open.spotify.com/playlist/60ht3itAzPwYkL88GaEIE4?si=tfha2yOGSE2x4ovXNQc7SA" target="_blank" rel="noreferrer">music</a>, or reading. I’m currently reading <em>The Midnight Library</em>. I run on coffee, love watching F1 and cheering for Max, and try to stay disciplined.</p>
+          <h2>{content.aboutHeading}</h2>
+          <p className="body-copy">{aboutSegments.map((segment, index) => {
+            if (segment.toLowerCase() === "music" && content.musicPlaylistUrl) {
+              return <a className="bio-link" href={content.musicPlaylistUrl} target="_blank" rel="noreferrer" key={index}>{segment}</a>;
+            }
+            if (segment.toLowerCase() === "the midnight library") {
+              return <em key={index}>{segment}</em>;
+            }
+            return segment;
+          })}</p>
         </div>
       </section>
 
       <footer className="footer">
         <a className="footer-name" href="#top">Manoj Ravichandran</a>
         <p>Made in Chennai <span>·</span> © 2026</p>
-        <a href="mailto:manojravichandran12@gmail.com">Say hello <span aria-hidden="true">↗</span></a>
+        <a href={`mailto:${content.contactEmail}`}>Say hello <span aria-hidden="true">↗</span></a>
       </footer>
     </main>
   );
