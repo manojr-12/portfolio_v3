@@ -10,4 +10,4 @@ The site now has a Sanity Studio at `/studio`. The Studio lets you edit the hero
 
 No API token is needed for a public dataset. Keep the project ID public; never add a write token to the website.
 
-After this initial connection, update content by opening `/studio`, editing the **Portfolio page**, and publishing. No Vercel redeploy is required for content edits.
+After this initial connection, update content by opening `/studio`, editing the **Portfolio page**, and publishing. To replace the resume, upload a PDF in the **Resume PDF** field. No Vercel redeploy is required for content edits or resume replacements.

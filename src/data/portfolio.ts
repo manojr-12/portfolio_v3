@@ -5,6 +5,7 @@ export type Project = {
   repo: string;
   live?: string;
   image?: string;
+  imageFit?: "cover" | "contain";
   images?: string[];
   alt?: string;
   mark?: string;
@@ -23,6 +24,7 @@ export type PortfolioContent = {
   heroCompany: string;
   heroDescription: string;
   contactEmail: string;
+  resumeUrl?: string;
   experienceLabel: string;
   experienceTitle: string;
   experience: Experience[];
@@ -42,6 +44,7 @@ export const defaultPortfolio: PortfolioContent = {
   heroDescription:
     "I'm a software development engineer with 3+ years of experience in distributed systems, microservices, mobile application development, and performance optimization. I also make jokes.",
   contactEmail: "manojravichandran12@gmail.com",
+  resumeUrl: "/manoj-ravichandran-resume.pdf",
   experienceLabel: "A few chapters",
   experienceTitle: "Experience",
   experience: [
@@ -124,6 +127,7 @@ export const defaultPortfolio: PortfolioContent = {
       description:
         "Explored how machine learning models can predict new connections in evolving social graphs.",
       image: "/portfolio/link_p.png",
+      imageFit: "contain",
       alt: "Link prediction project visualization",
     },
   ],

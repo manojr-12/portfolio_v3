@@ -22,4 +22,4 @@ Set `NEXT_PUBLIC_SANITY_PROJECT_ID` and `NEXT_PUBLIC_SANITY_DATASET=production` 
 
 ## Updating content
 
-Open the [Portfolio Studio](https://portfoliov3-ecru.vercel.app/studio), edit the **Portfolio page**, and publish. Published content appears on the site within about 30 seconds without a Vercel redeploy. See [SANITY_SETUP.md](SANITY_SETUP.md) for setup details.
+Open the [Portfolio Studio](https://portfoliov3-ecru.vercel.app/studio), edit the **Portfolio page**, and publish. To replace the resume, upload a PDF in the **Resume PDF** field and publish. Published content appears on the site within about 30 seconds without a Vercel redeploy. See [SANITY_SETUP.md](SANITY_SETUP.md) for setup details.

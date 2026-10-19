@@ -13,7 +13,7 @@ export default async function Home() {
           <a href="#experience">Experience</a>
           <a href="#projects">Projects</a>
           <a href="#about">About</a>
-          <a href="/manoj-ravichandran-resume.pdf" target="_blank" rel="noreferrer">Resume <span aria-hidden="true">↗</span></a>
+          <a href={content.resumeUrl || "/manoj-ravichandran-resume.pdf"} target="_blank" rel="noreferrer">Resume <span aria-hidden="true">↗</span></a>
         </nav>
       </header>
 
@@ -56,7 +56,7 @@ export default async function Home() {
         <div className="project-grid">
           {content.projects.map((project) => (
             <article className={`project-card ${project.image ? "has-image" : "text-only"}`} key={project.name}>
-              {project.images ? <div className="project-image-wrap project-multi-image" aria-label={`${project.name} app screens`}>{project.images.map((image) => <img src={image} alt="" key={image} />)}</div> : project.image ? <div className="project-image-wrap"><img src={project.image} alt={project.alt ?? ""} /></div> : <div className="project-monogram" aria-hidden="true">{project.mark}</div>}
+              {project.images ? <div className="project-image-wrap project-multi-image" aria-label={`${project.name} app screens`}>{project.images.map((image) => <img src={image} alt="" key={image} />)}</div> : project.image ? <div className={`project-image-wrap ${project.imageFit === "contain" ? "project-image-contain" : ""}`}><img src={project.image} alt={project.alt ?? ""} /></div> : <div className="project-monogram" aria-hidden="true">{project.mark}</div>}
               <div className="project-copy">
                 <p className="project-type">{project.type}</p>
                 <h3><a className="project-title-link" href={project.repo} target="_blank" rel="noreferrer">{project.name}<span aria-hidden="true">↗</span></a></h3>

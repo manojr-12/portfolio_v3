@@ -11,6 +11,13 @@ export const portfolio = defineType({
     defineField({ name: "heroCompany", title: "Current workplace line", type: "string" }),
     defineField({ name: "heroDescription", title: "Introduction", type: "text", rows: 4 }),
     defineField({ name: "contactEmail", title: "Contact email", type: "string" }),
+    defineField({
+      name: "resumePdf",
+      title: "Resume PDF",
+      type: "file",
+      options: { accept: "application/pdf" },
+      description: "Upload a replacement PDF here, then publish the page.",
+    }),
     defineField({ name: "experienceLabel", title: "Experience eyebrow", type: "string" }),
     defineField({ name: "experienceTitle", title: "Experience heading", type: "string" }),
     defineField({
@@ -60,6 +67,19 @@ export const portfolio = defineType({
               title: "Image URL or public path",
               type: "string",
               description: "Use a full image URL or a path such as /portfolio/dailyflow.png.",
+            }),
+            defineField({
+              name: "imageFit",
+              title: "Image fitting",
+              type: "string",
+              options: {
+                list: [
+                  { title: "Fill frame (crop edges)", value: "cover" },
+                  { title: "Show full image", value: "contain" },
+                ],
+                layout: "radio",
+              },
+              initialValue: "cover",
             }),
             defineField({
               name: "images",

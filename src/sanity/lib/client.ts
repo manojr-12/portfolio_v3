@@ -18,13 +18,14 @@ const portfolioQuery = `*[_type == "portfolio"][0]{
   heroCompany,
   heroDescription,
   contactEmail,
+  "resumeUrl": resumePdf.asset->url,
   experienceLabel,
   experienceTitle,
   experience[]{date, role, company, href, details},
   projectsLabel,
   projectsTitle,
   projectsNote,
-  projects[]{name, type, description, repo, live, image, images, alt, mark},
+  projects[]{name, type, description, repo, live, image, imageFit, images, alt, mark},
   aboutLabel,
   aboutHeading,
   aboutBody,
@@ -47,7 +48,13 @@ export async function getPortfolioContent(): Promise<PortfolioContent> {
       ...defaultPortfolio,
       ...content,
       experience: content.experience ?? defaultPortfolio.experience,
-      projects: content.projects ?? defaultPortfolio.projects,
+      projects: content.projects?.map((project) => ({
+        ...project,
+        imageFit:
+          project.imageFit ??
+          defaultPortfolio.projects.find((item) => item.name === project.name)?.imageFit ??
+          "cover",
+      })) ?? defaultPortfolio.projects,
     };
   } catch (error) {
     console.error("Could not fetch portfolio content from Sanity; using local defaults.", error);
